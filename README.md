@@ -33,5 +33,5 @@ This walkthrough guides you through using Contour
 5. Update your [bundle.yml](./src/bundle/.imgpkg/bundle.yml) file
 6. Test your bundle: `ytt -f src/bundle/config`
 7. Lock images used: `kbld -f src/bundle --imgpkg-lock-output src/bundle/.imgpkg/images.yml`
-8. Publish your bundle: `imgpkg push --bundle quay.io/failk8s/<NAME>-package:<VERSION> --file src/bundle`. These steps can be done via [hack/build-package.sh](./hack/build-package.sh)
+8. Publish your bundle: `imgpkg push --bundle quay.io/failk8s/contour-package:develop --file src/bundle`. These steps can be done via [hack/build-package.sh](./hack/build-package.sh)
 9. Package up your k8s manifests and test in k8s [hack/package-manifests.sh](./hack/package-manifests.sh). The files will be in `target` folder.

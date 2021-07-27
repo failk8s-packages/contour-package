@@ -1,16 +1,16 @@
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  name: contour.tkgdev.failk8s.com.1.16.0
+  name: contour.tkgdev.failk8s.com.develop
   namespace: kapp-controller-packaging-global
 spec:
   refName: contour.tkgdev.failk8s.com
-  version: 1.16.0
+  version: develop
   template:
     spec:
       fetch:
       - imgpkgBundle:
-          image: quay.io/failk8s/contour-package:1.16.0
+          image: quay.io/failk8s/contour-package:develop
       template:
       - ytt:
           paths:
