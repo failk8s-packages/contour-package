@@ -1,0 +1,4 @@
+#! Add your values here (without ytt annotations)
+---
+domain: example.com
+wildcard_domain: apps.example.com

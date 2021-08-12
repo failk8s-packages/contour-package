@@ -1,0 +1,7 @@
+#@data/values
+---
+namespace: projectcontour
+#! TODO: Make domain and wildcard_domain configurable only if external_dns is enabled
+domain: REPLACE_ME
+wildcard_domain: REPLACE_ME 
+privileged_clusterrole_name:

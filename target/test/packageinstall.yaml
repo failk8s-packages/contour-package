@@ -1,15 +1,15 @@
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
-  name: contour-package
+  name: contour
   namespace: contour-package
 spec:
-  serviceAccountName: contour-sa
+  serviceAccountName: contour
   packageRef:
-    refName: contour.tkgdev.failk8s.com
+    refName: contour.dev.failk8s.com
     versionSelection:
-      constraints: develop
+      constraints: 0.0.0+develop
       prereleases: {}
   values:
   - secretRef:
-      name: contour-config
+      name: contour

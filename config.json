@@ -2,8 +2,9 @@
     "registry": "quay.io/failk8s",
     "package": {
         "name": "contour",
-        "domain": "tkgdev.failk8s.com",
+        "domain": "dev.failk8s.com",
         "displayName": "Project Contour",
         "version": "develop"
-    }
+    },
+    "packages": []
 }
