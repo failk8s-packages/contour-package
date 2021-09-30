@@ -1,4 +1,4 @@
 #! Add your values here (without ytt annotations)
 ---
-domain: example.com
-wildcard_domain: apps.example.com
+domain: failk8s.com
+wildcard_domain: apps.failk8s.com
