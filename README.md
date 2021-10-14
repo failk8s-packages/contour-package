@@ -12,16 +12,60 @@ The following configuration values can be set to customize the project contour i
 
 ### Global
 
-| Value | Required/Optional | Description |
-|-------|-------------------|-------------|
-| `namespace` | Optional | The namespace in which to deploy contour. |
-| `domain` | Required | The main DNS domain in which contour will be registered. This is to support external_dns autoregistration |
-| `wildcard_domain` | Required | The applications wildcard DNS domain in which contour will be registered. This is to support external_dns autoregistration |
-| `privileged_clusterrole_name` | Optional | If PSPs are enabled on the cluster, this is the name of the privileged clusterrole that allows Envoy to start |
+| Value | Required/Optional | Default     | Description |
+|-------|-------------------|-------------|-------------|
+| `namespace` | Required | **projectcontour** | The namespace in which to deploy contour |
+| `create_namespace` | Required | **True** | Needs the namespace where contour will be installed to be created? |
+| `is_externaldns_enabled` | Required | **False** | Is external_dns going to be available in the cluster? |
+| `externaldns.domain` | Optional | <EMPTY> | The main DNS domain in which contour will be registered. Only required when external_dns is enabled |
+| `externaldns.wildcard_domain` | Optional | <EMPTY> | The applications wildcard DNS domain in which contour will be registered. Only required when external_dns is enabled |
 
 ## Usage Example
 
 This walkthrough guides you through using Contour
+
+## Test in minikube
+
+Start minikube:
+```
+minikube start
+```
+
+Install kapp-controller 0.20+
+```
+kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+```
+
+Install the Package Metadata:
+```
+kubectl apply -f target/k8s
+```
+
+Install the Required RBAC for the package install (create the control NS):
+```
+kubectl apply -f target/test/packageinstall-ns-rbac.yaml
+```
+
+Create the configuration file for your cluster:
+```
+kubectl create secret generic contour -n contour-package --from-file=values.yaml=src/examples-values/minikube.yaml -o yaml --dry-run=client | kubectl apply -f -
+```
+
+Create the package:
+```
+kubectl apply -f target/test/packageinstall.yaml
+```
+
+Verify the installation:
+```
+watch kubectl get packageinstall -A
+```
+
+If there's an issue, you can verify the problem with:
+
+```
+kubectl get packageinstall contour -n contour-package -o yaml
+```
 
 ## Develop checklist
 
