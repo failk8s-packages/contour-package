@@ -16,6 +16,7 @@ The following configuration values can be set to customize the project contour i
 |-------|-------------------|-------------|-------------|
 | `namespace` | Required | **projectcontour** | The namespace in which to deploy contour |
 | `create_namespace` | Required | **True** | Needs the namespace where contour will be installed to be created? |
+| `privileged_clusterrole_name` | Optional | <EMPTY> | ClusterRole name to start envoy as privileged if PSPs are enabled |
 | `is_externaldns_enabled` | Required | **False** | Is external_dns going to be available in the cluster? |
 | `externaldns.domain` | Optional | <EMPTY> | The main DNS domain in which contour will be registered. Only required when external_dns is enabled |
 | `externaldns.wildcard_domain` | Optional | <EMPTY> | The applications wildcard DNS domain in which contour will be registered. Only required when external_dns is enabled |

@@ -2,6 +2,7 @@
 ---
 namespace: projectcontour
 create_namespace: true
+privileged_clusterrole_name: ""
 #! Enablers
 is_externaldns_enabled: false
 #! Package config
