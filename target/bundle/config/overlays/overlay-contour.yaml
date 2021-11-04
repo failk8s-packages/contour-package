@@ -5,7 +5,7 @@
 ---
 metadata:
   annotations:
-    #@ if/end data.values.is_externaldns_enabled:
+    #@ if/end data.values.is_externaldns_enabled == True:
     #@overlay/match missing_ok=True
     external-dns.alpha.kubernetes.io/hostname: #@ "*.{}.,*.{}.".format(data.values.externaldns.domain, data.values.externaldns.wildcard_domain)
 
