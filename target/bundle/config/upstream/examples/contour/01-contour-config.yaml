@@ -24,6 +24,11 @@ data:
     # Disable RFC-compliant behavior to strip "Content-Length" header if
     # "Tranfer-Encoding: chunked" is also set.
     # disableAllowChunkedLength: false
+    #
+    # Disable Envoy's non-standard merge_slashes path transformation option
+    # that strips duplicate slashes from request URLs.
+    # disableMergeSlashes: false
+    #
     # Disable HTTPProxy permitInsecure field
     disablePermitInsecure: false
     tls:
@@ -45,10 +50,6 @@ data:
       envoy-client-certificate:
     #   name: envoy-client-cert-secret-name
     #   namespace: projectcontour
-    # The following config shows the defaults for the leader election.
-    # leaderelection:
-    #   configmap-name: leader-elect
-    #   configmap-namespace: projectcontour
     ####
     # ExternalName Services are disabled by default due to CVE-2021-XXXXX
     # You can re-enable them by setting this setting to `true`.
@@ -67,6 +68,7 @@ data:
     # accesslog-format-string: "...\n"
     # To enable JSON logging in Envoy
     # accesslog-format: json
+    # accesslog-level: info
     # The default fields that will be logged are specified below.
     # To customise this list, just add or remove entries.
     # The canonical list is available at
@@ -93,6 +95,7 @@ data:
     #   - "upstream_service_time"
     #   - "user_agent"
     #   - "x_forwarded_for"
+    #   - "grpc_status"
     #
     # default-http-versions:
     # - "HTTP/2"
@@ -106,6 +109,7 @@ data:
     #   max-connection-duration: infinity
     #   delayed-close-timeout: 1s
     #   connection-shutdown-grace-period: 5s
+    #   connect-timeout: 2s
     #
     # Envoy cluster settings.
     # cluster:

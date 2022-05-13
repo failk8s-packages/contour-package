@@ -165,6 +165,7 @@ data:
     #       X-Envoy-Response-Flags: %RESPONSE_FLAGS%
     #
 
+
 #@overlay/match by=overlay.subset({"kind":"CustomResourceDefinition"}),expects="2+"
 ---
 #@overlay/remove
@@ -178,6 +179,3 @@ metadata:
   annotations:
     #@overlay/match missing_ok=True
     kapp.k14s.io/update-strategy: "fallback-on-replace"
-spec:
-  #@overlay/remove
-  ttlSecondsAfterFinished: 0
