@@ -4,7 +4,7 @@
         "name": "contour",
         "domain": "dev.failk8s.com",
         "displayName": "Project Contour",
-        "version": "1.18.1"
+        "version": "1.20.0"
     },
     "packages": []
 }

@@ -1,5 +1,6 @@
 #! Add your values here (without ytt annotations)
 ---
+privileged_clusterrole_name: vmware-system-tmc-psp-privileged
 is_externaldns_enabled: True
 externaldns:
   domain: failk8s.com

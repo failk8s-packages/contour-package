@@ -1,12 +1,11 @@
 #@ load("@ytt:data", "data")
 #@ load("@ytt:overlay", "overlay")
 
-#@ if data.values.namespace!="projectcontour":
-
+#@ if/end not data.values.create_namespace:
 #@overlay/match by=overlay.subset({"kind":"Namespace", "metadata":{"name": "projectcontour"}})
 #@overlay/remove
 ---
-
+#@overlay/match by=overlay.subset({"kind":"Namespace", "metadata":{"name": "projectcontour"}}), expects=[0,1]
 ---
 apiVersion: v1
 kind: Namespace
@@ -22,15 +21,13 @@ metadata:
 #@overlay/match by=overlay.subset({"kind":"RoleBinding"}),expects=[1,2]
 ---
 subjects:
-#@overlay/match by=overlay.all
-- kind: ServiceAccount
-  namespace: #@ data.values.namespace
+  #@overlay/match by=overlay.all
+  - kind: ServiceAccount
+    namespace: #@ data.values.namespace
 
 #@overlay/match by=overlay.subset({"kind":"ClusterRoleBinding", "metadata": {"name": "contour"}})
 ---
 subjects:
-#@overlay/match by=overlay.all
-- kind: ServiceAccount
-  namespace: #@ data.values.namespace
-
-#@ end
+  #@overlay/match by=overlay.all
+  - kind: ServiceAccount
+    namespace: #@ data.values.namespace
