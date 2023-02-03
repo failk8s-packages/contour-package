@@ -21,7 +21,7 @@ data:
     #
     # Specify the Gateway API configuration.
     # gateway:
-    #   controllerName: projectcontour.io/projectcontour/contour
+    #   controllerName: projectcontour.io/gateway-controller
     #
     # should contour expect to be running inside a k8s cluster
     incluster: true
@@ -32,6 +32,11 @@ data:
     # Disable RFC-compliant behavior to strip "Content-Length" header if
     # "Tranfer-Encoding: chunked" is also set.
     # disableAllowChunkedLength: false
+    #
+    # Disable Envoy's non-standard merge_slashes path transformation option
+    # that strips duplicate slashes from request URLs.
+    # disableMergeSlashes: false
+    #
     # Disable HTTPProxy permitInsecure field
     disablePermitInsecure: false
     tls:
@@ -75,6 +80,7 @@ data:
     # accesslog-format-string: "...\n"
     # To enable JSON logging in Envoy
     # accesslog-format: json
+    # accesslog-level: info
     # The default fields that will be logged are specified below.
     # To customise this list, just add or remove entries.
     # The canonical list is available at
@@ -101,6 +107,8 @@ data:
     #   - "upstream_service_time"
     #   - "user_agent"
     #   - "x_forwarded_for"
+    #   - "grpc_status"
+    #   - "grpc_status_number"
     #
     # default-http-versions:
     # - "HTTP/2"
@@ -114,6 +122,7 @@ data:
     #   max-connection-duration: infinity
     #   delayed-close-timeout: 1s
     #   connection-shutdown-grace-period: 5s
+    #   connect-timeout: 2s
     #
     # Envoy cluster settings.
     # cluster:
@@ -148,6 +157,9 @@ data:
     #   Limit Service is consulted for a request.
     #   ref. https://tools.ietf.org/id/draft-polli-ratelimit-headers-03.html
     #   enableXRateLimitHeaders: false
+    #   Defines whether to translate status code 429 to grpc code RESOURCE_EXHAUSTED
+    #   instead of the default UNAVAILABLE
+    #   enableResourceExhaustedCode: false
     #
     # Global Policy settings.
     # policy:
@@ -164,6 +176,19 @@ data:
     #       # example: Envoy flags that provide additional details about the response or connection
     #       X-Envoy-Response-Flags: %RESPONSE_FLAGS%
     #
+    # metrics:
+    #  contour:
+    #    address: 0.0.0.0
+    #    port: 8000
+    #    server-certificate-path: /path/to/server-cert.pem
+    #    server-key-path: /path/to/server-private-key.pem
+    #    ca-certificate-path: /path/to/root-ca-for-client-validation.pem
+    #  envoy:
+    #    address: 0.0.0.0
+    #    port: 8002
+    #    server-certificate-path: /path/to/server-cert.pem
+    #    server-key-path: /path/to/server-private-key.pem
+    #    ca-certificate-path: /path/to/root-ca-for-client-validation.pem
 
 
 #@overlay/match by=overlay.subset({"kind":"CustomResourceDefinition"}),expects="2+"
