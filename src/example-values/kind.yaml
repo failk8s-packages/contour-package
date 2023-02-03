@@ -1,0 +1,9 @@
+#! Add your values here (without ytt annotations)
+---
+namespace: ingress
+is_externaldns_enabled: True
+service:
+  type: ClusterIP
+externaldns:
+  domain: kind.failk8s.com
+  wildcard_domain: kind.apps.failk8s.com

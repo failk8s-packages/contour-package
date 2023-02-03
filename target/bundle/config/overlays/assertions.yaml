@@ -5,3 +5,5 @@
 #@   data.values.externaldns.domain or assert.fail("data.values.externaldns.domain can not be empty")
 #@   data.values.externaldns.wildcard_domain or assert.fail("data.values.externaldns.wildcard_domain can not be empty")
 #@ end
+
+#@ data.values.service.type=="LoadBalancer" or data.values.service.type=="ClusterIP" or assert.fail("data.values.service.type must be one of LoadBalancer|ClusterIP")
