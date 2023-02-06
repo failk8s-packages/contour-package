@@ -5,4 +5,7 @@
 ---
 spec:
   type: #@ data.values.service.type
+  #@ if/end data.values.service.type=="ClusterIP":
+  #@overlay/remove
+  externalTrafficPolicy:
 
