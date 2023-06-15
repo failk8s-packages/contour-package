@@ -8,7 +8,7 @@ spec:
   packageRef:
     refName: contour.dev.failk8s.com
     versionSelection:
-      constraints: 0.0.0+develop
+      constraints: 1.25.0
       prereleases: {}
   values:
   - secretRef:
