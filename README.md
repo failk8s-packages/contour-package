@@ -20,6 +20,7 @@ The following configuration values can be set to customize the project contour i
 | `is_externaldns_enabled` | Required | **False** | Is external_dns going to be available in the cluster? |
 | `externaldns.domain` | Optional | <EMPTY> | The main DNS domain in which contour will be registered. Only required when external_dns is enabled |
 | `externaldns.wildcard_domain` | Optional | <EMPTY> | The applications wildcard DNS domain in which contour will be registered. Only required when external_dns is enabled |
+| `configFileContents.default_http_versions` | Optional | "HTTP/1.1", "HTTP/2" | HTTP protocols to use. You can provide only one of them to disable the other |
 
 ## Usage Example
 

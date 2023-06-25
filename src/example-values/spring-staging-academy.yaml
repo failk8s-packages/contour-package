@@ -4,3 +4,6 @@ is_externaldns_enabled: True
 externaldns:
   domain: failk8s.com
   wildcard_domain: apps.failk8s.com
+configFileContents:
+  default_http_versions:
+    - "HTTP/1.1"

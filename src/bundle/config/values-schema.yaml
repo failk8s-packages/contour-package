@@ -12,3 +12,7 @@ is_externaldns_enabled: false
 externaldns:
   domain: ""
   wildcard_domain: ""
+configFileContents:
+  #@schema/default ["HTTP/1.1", "HTTP/2"]
+  default_http_versions:
+    - ""

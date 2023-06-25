@@ -1,15 +1,26 @@
+---
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  name: contour.dev.failk8s.com.0.0.0+develop
+  annotations:
+    kbld.k14s.io/images: |
+      - origins:
+        - resolved:
+            tag: 1.25.0
+            url: quay.io/failk8s/contour-package:1.25.0
+        url: quay.io/failk8s/contour-package@sha256:02ea6e66b4a3e9f4032daae6f6a57e711ce9604997602cbb4bafe3019a4601a6
+  name: contour.dev.failk8s.com.1.25.0
 spec:
   refName: contour.dev.failk8s.com
-  version: 0.0.0+develop
   template:
     spec:
+      deploy:
+      - kapp:
+          rawOptions:
+          - --wait-timeout=5m
       fetch:
       - imgpkgBundle:
-          image: quay.io/failk8s/contour-package:develop
+          image: quay.io/failk8s/contour-package@sha256:02ea6e66b4a3e9f4032daae6f6a57e711ce9604997602cbb4bafe3019a4601a6
       template:
       - ytt:
           paths:
@@ -18,7 +29,4 @@ spec:
           paths:
           - '-'
           - .imgpkg/images.yml
-      deploy:
-      - kapp:
-          rawOptions:
-          - --wait-timeout=5m
+  version: 1.25.0
