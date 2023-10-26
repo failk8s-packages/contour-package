@@ -1,18 +1,31 @@
+#@ load("rules.star", "check_all")
+
 #@data/values-schema
+#@schema/validation ("check compliance of values", check_all)
 ---
+#@schema/desc "Underlying infrastructure provider."
+#@schema/validation one_of=["aws", "gcp", "azure", "kind", "minikube", "custom"]
+infraProvider: "custom"
+
+#@schema/desc "Name of the namespace to use"
 namespace: projectcontour
-create_namespace: true
-privileged_clusterrole_name: ""
+#@schema/desc "Should the namespace be created"
+createNamespace: true
+
+#@schema/desc "Envoy service configuration"
 service:
-  #! Type can be LoadBalancer or ClusterIP
+  #@schema/validation one_of=["ClusterIP", "LoadBalancer"]
   type: LoadBalancer
-#! Enablers
-is_externaldns_enabled: false
-#! Package config
+  useHostPorts: true
+
+#@schema/desc "Configuration for externaldns"
+#@schema/nullable
 externaldns:
-  domain: ""
-  wildcard_domain: ""
+  domains:
+    - ""
+
+#@schema/desc "Configuration for the Contour ingress controller"
 configFileContents:
   #@schema/default ["HTTP/1.1", "HTTP/2"]
-  default_http_versions:
+  defaultHttpVersions:
     - ""

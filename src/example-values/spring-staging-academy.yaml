@@ -1,9 +1,10 @@
 #! Add your values here (without ytt annotations)
 ---
-is_externaldns_enabled: True
+infraProvider: aws
 externaldns:
-  domain: failk8s.com
-  wildcard_domain: apps.failk8s.com
+  domains:
+    - failk8s.com
+    - apps.failk8s.com
 configFileContents:
-  default_http_versions:
+  defaultHttpVersions:
     - "HTTP/1.1"

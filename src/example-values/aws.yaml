@@ -1,9 +1,6 @@
 #! Add your values here (without ytt annotations)
 ---
-namespace: ingress
-infraProvider: minikube
-service:
-  type: ClusterIP
+infraProvider: aws
 externaldns:
   domains:
     - failk8s.com
