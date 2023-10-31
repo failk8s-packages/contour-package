@@ -1,9 +1,9 @@
-#! Add your values here (without ytt annotations)
 ---
 namespace: ingress
 infraProvider: kind
 service:
   type: ClusterIP
+  useHostPorts: false
 externaldns:
   domains:
     - kind.failk8s.com

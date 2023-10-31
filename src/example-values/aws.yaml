@@ -5,3 +5,6 @@ externaldns:
   domains:
     - failk8s.com
     - apps.failk8s.com
+configFileContents:
+  defaultHttpVersions:
+    - "HTTP/1.1"

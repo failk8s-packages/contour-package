@@ -7,5 +7,5 @@ directories:
       - path: .
         git:
           url: https://github.com/projectcontour/contour
-          ref: v1.26.1
+          ref: v1.27.0
         newRootPath: examples/contour
