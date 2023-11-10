@@ -4,6 +4,8 @@ infraProvider: kind
 service:
   type: ClusterIP
   useHostPorts: false
+contour:
+  replicas: 1
 externaldns:
   domains:
     - kind.failk8s.com
